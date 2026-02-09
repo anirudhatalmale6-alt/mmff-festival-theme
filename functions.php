@@ -432,3 +432,6 @@ function mmff_activate() {
     flush_rewrite_rules();
 }
 add_action('after_switch_theme', 'mmff_activate');
+
+// Film Import Tool (admin only)
+require_once get_template_directory() . '/import-films.php';
