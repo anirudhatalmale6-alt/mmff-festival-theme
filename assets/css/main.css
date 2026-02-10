@@ -5194,12 +5194,14 @@ a.page-contact__info-value:hover {
 }
 
 .single-film__poster .single-film__poster-image {
+    display: block;
     width: 100%;
+    height: auto;
     max-width: 320px;
     margin: 0 auto;
     border-radius: var(--radius-lg);
-    overflow: hidden;
     box-shadow: var(--shadow-xl);
+    background-color: var(--color-gray-100);
 }
 
 @media (min-width: 768px) {
