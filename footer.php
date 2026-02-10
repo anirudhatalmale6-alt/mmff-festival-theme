@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $contact_email = get_theme_mod( 'mmff_contact_email', 'contact@mmff.se' );
 $venue         = get_theme_mod( 'mmff_venue', 'Bredgränd 2, 111 30 Stockholm' );
 $instagram_url = get_theme_mod( 'mmff_instagram_url', '' );
-$facebook_url  = get_theme_mod( 'mmff_facebook_url', '' );
+$facebook_url  = get_theme_mod( 'mmff_facebook_url', 'https://www.facebook.com/migrationmattersfilmfestival/' );
 $twitter_url   = get_theme_mod( 'mmff_twitter_url', '' );
 ?>
 

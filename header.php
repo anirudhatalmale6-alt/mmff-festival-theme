@@ -2,7 +2,7 @@
 /**
  * Theme Header
  *
- * Displays the <head> section and site header with navigation.
+ * Displays the <head> section, logo banner, and site header with navigation.
  *
  * @package MMFF_Festival
  */
@@ -26,21 +26,36 @@ if ( ! defined( 'ABSPATH' ) ) {
     <?php esc_html_e( 'Skip to content', 'mmff-festival' ); ?>
 </a>
 
-<header class="site-header" role="banner">
+<!-- Logo Banner -->
+<?php
+$logo_url = '';
+$custom_logo_id = get_theme_mod( 'custom_logo' );
+if ( ! $custom_logo_id ) {
+    // Fallback: check site_logo option (block themes)
+    $custom_logo_id = get_option( 'site_logo' );
+}
+if ( $custom_logo_id ) {
+    $logo_url = wp_get_attachment_image_url( $custom_logo_id, 'full' );
+}
+?>
+<?php if ( $logo_url ) : ?>
+<div class="site-banner" role="banner">
+    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-banner__link" rel="home">
+        <img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" class="site-banner__image">
+    </a>
+</div>
+<?php endif; ?>
+
+<!-- Navigation Header -->
+<header class="site-header" role="navigation">
     <div class="site-header__container">
         <div class="site-header__brand">
-            <?php if ( has_custom_logo() ) : ?>
-                <div class="site-header__logo">
-                    <?php the_custom_logo(); ?>
-                </div>
-            <?php endif; ?>
             <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-header__title-link" rel="home">
-                <span class="site-header__title"><?php esc_html_e( 'Migration Matters', 'mmff-festival' ); ?></span>
-                <span class="site-header__subtitle"><?php esc_html_e( 'Film Festival', 'mmff-festival' ); ?></span>
+                <span class="site-header__title"><?php esc_html_e( 'MMFF', 'mmff-festival' ); ?></span>
             </a>
         </div>
 
-        <nav class="site-header__nav" role="navigation" aria-label="<?php esc_attr_e( 'Primary Navigation', 'mmff-festival' ); ?>">
+        <nav class="site-header__nav" aria-label="<?php esc_attr_e( 'Primary Navigation', 'mmff-festival' ); ?>">
             <?php
             wp_nav_menu( array(
                 'theme_location' => 'primary',
@@ -62,7 +77,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         </button>
     </div>
 
-    <div class="site-header__mobile-menu" id="mobile-menu" role="navigation" aria-label="<?php esc_attr_e( 'Mobile Navigation', 'mmff-festival' ); ?>" hidden>
+    <div class="site-header__mobile-menu" id="mobile-menu" aria-label="<?php esc_attr_e( 'Mobile Navigation', 'mmff-festival' ); ?>" hidden>
         <?php
         wp_nav_menu( array(
             'theme_location' => 'primary',
