@@ -3354,7 +3354,7 @@ body.admin-bar .site-header {
 .featured-films {
     position: relative;
     padding: var(--space-10) 0;
-    background-color: var(--color-bg);
+    background-color: #fff;
 }
 
 .featured-films__list {
@@ -5403,22 +5403,28 @@ body:has(.site-banner) {
    ---------------------------------------------------------- */
 
 .featured-films__gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: var(--space-3);
     padding: 0;
 }
 
+.featured-films__gallery .gallery-item {
+    flex: 0 0 calc(33.333% - var(--space-3));
+}
+
 @media (min-width: 768px) {
     .featured-films__gallery {
-        grid-template-columns: repeat(4, 1fr);
         gap: var(--space-4);
+    }
+    .featured-films__gallery .gallery-item {
+        flex: 0 0 calc(25% - var(--space-4));
     }
 }
 
 @media (min-width: 1024px) {
-    .featured-films__gallery {
-        grid-template-columns: repeat(6, 1fr);
+    .featured-films__gallery .gallery-item {
+        flex: 0 0 calc(16.666% - var(--space-4));
     }
 }
 
@@ -5427,11 +5433,16 @@ body:has(.site-banner) {
     display: block;
     border-radius: var(--radius-md);
     overflow: hidden;
-    aspect-ratio: 2/3;
     background: var(--color-secondary);
     text-decoration: none;
     color: #fff;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gallery-item::before {
+    content: '';
+    display: block;
+    padding-top: 150%;
 }
 
 .gallery-item:hover {
@@ -5440,6 +5451,9 @@ body:has(.site-banner) {
 }
 
 .gallery-item__image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
