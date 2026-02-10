@@ -19,6 +19,7 @@ $film_type      = get_post_meta( $film_id, '_film_type', true );
 $screening_date = get_post_meta( $film_id, '_film_screening_date', true );
 $screening_time = get_post_meta( $film_id, '_film_screening_time', true );
 $countries      = wp_get_post_terms( $film_id, 'film_country', array( 'fields' => 'names' ) );
+$categories     = wp_get_post_terms( $film_id, 'film_category', array( 'fields' => 'names' ) );
 ?>
 <article class="film-card" data-film-id="<?php echo esc_attr( $film_id ); ?>">
     <a href="<?php the_permalink(); ?>" class="film-card__link" aria-label="<?php echo esc_attr( sprintf( __( 'View details for %s', 'mmff-festival' ), get_the_title() ) ); ?>">
@@ -50,6 +51,8 @@ $countries      = wp_get_post_terms( $film_id, 'film_country', array( 'fields' =
 
             <?php if ( $director ) : ?>
                 <p class="film-card__director"><?php echo esc_html( $director ); ?></p>
+            <?php elseif ( ! empty( $categories ) && ! is_wp_error( $categories ) ) : ?>
+                <p class="film-card__director"><?php echo esc_html( implode( ', ', $categories ) ); ?></p>
             <?php endif; ?>
 
             <div class="film-card__meta">
