@@ -982,7 +982,7 @@ body.nav-is-open {
 
 .hero {
     position: relative;
-    min-height: 50vh;
+    min-height: 40vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -993,14 +993,14 @@ body.nav-is-open {
 
 @media (min-width: 768px) {
     .hero {
-        min-height: 55vh;
+        min-height: 42vh;
         margin-top: var(--header-height);
     }
 }
 
 @media (min-width: 1024px) {
     .hero {
-        min-height: 60vh;
+        min-height: 45vh;
     }
 }
 
@@ -1104,7 +1104,7 @@ body.nav-is-open {
 
 .hero__tagline {
     font-size: var(--text-base);
-    color: rgba(255, 255, 255, 0.65);
+    color: rgba(255, 255, 255, 0.85);
     margin-bottom: var(--space-8);
     font-style: italic;
 }
@@ -1130,8 +1130,8 @@ body.nav-is-open {
 /* Hero date line (template uses hero__dates) */
 .hero__dates {
     font-size: var(--text-lg);
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+    color: var(--color-accent-light);
     margin-bottom: var(--space-3);
     letter-spacing: var(--tracking-wide);
 }
@@ -1160,6 +1160,7 @@ body.nav-is-open {
 .hero__btn--primary {
     background-color: var(--color-accent);
     color: var(--color-secondary);
+    font-weight: 700;
 }
 
 .hero__btn--primary:hover {
@@ -1168,14 +1169,15 @@ body.nav-is-open {
 }
 
 .hero__btn--secondary {
-    background-color: transparent;
-    color: rgba(255, 255, 255, 0.9);
-    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    font-weight: 700;
 }
 
 .hero__btn--secondary:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.25);
+    border-color: #fff;
     transform: translateY(-2px);
 }
 
@@ -5169,14 +5171,14 @@ a.page-contact__info-value:hover {
 
 @media (min-width: 768px) {
     .single-film__layout {
-        grid-template-columns: 320px 1fr;
+        grid-template-columns: 350px 1fr;
         gap: var(--space-10);
     }
 }
 
 @media (min-width: 1024px) {
     .single-film__layout {
-        grid-template-columns: 380px 1fr;
+        grid-template-columns: 420px 1fr;
         gap: var(--space-12);
     }
 }
@@ -5197,7 +5199,7 @@ a.page-contact__info-value:hover {
     display: block;
     width: 100%;
     height: auto;
-    max-width: 320px;
+    max-width: 480px;
     margin: 0 auto;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-xl);
@@ -5454,8 +5456,8 @@ body:has(.site-banner) {
     left: 0;
     right: 0;
     padding: var(--space-3);
-    background: linear-gradient(transparent, rgba(0,0,0,0.85));
-    opacity: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.75));
+    opacity: 1;
     transition: opacity 0.25s ease;
 }
 

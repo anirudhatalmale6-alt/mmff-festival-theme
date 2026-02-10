@@ -18,9 +18,9 @@ if ( ! $sponsors->have_posts() ) {
     return;
 }
 ?>
-<section class="sponsor-banner" aria-label="<?php esc_attr_e( 'Our Sponsors', 'mmff-festival' ); ?>">
+<section class="sponsor-banner" aria-label="<?php esc_attr_e( 'Our Collaboration Partners', 'mmff-festival' ); ?>">
     <div class="sponsor-banner__container">
-        <h2 class="sponsor-banner__heading screen-reader-text"><?php esc_html_e( 'Sponsors', 'mmff-festival' ); ?></h2>
+        <h2 class="sponsor-banner__heading screen-reader-text"><?php esc_html_e( 'Collaboration', 'mmff-festival' ); ?></h2>
         <div class="sponsor-banner__track">
             <?php while ( $sponsors->have_posts() ) : $sponsors->the_post(); ?>
                 <?php

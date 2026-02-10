@@ -92,7 +92,7 @@ $sponsor_levels = get_terms( array(
 
             <?php else : ?>
                 <div class="page-sponsors__empty">
-                    <p><?php esc_html_e( 'Sponsor information will be available soon.', 'mmff-festival' ); ?></p>
+                    <p><?php esc_html_e( 'Collaboration partner information will be available soon.', 'mmff-festival' ); ?></p>
                 </div>
             <?php endif; ?>
 
