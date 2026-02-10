@@ -29,6 +29,9 @@
     --color-accent-dark:      #B37A28;    /* deep amber                        */
     --color-accent-subtle:    #FDF6E8;    /* very light gold tint              */
 
+    /* --- Background --- */
+    --color-bg:               #FFFFFF;    /* page background                   */
+
     /* --- Neutrals --- */
     --color-white:            #FFFFFF;
     --color-offwhite:         #FAFAF8;    /* slight warm white                 */
@@ -988,13 +991,11 @@ body.nav-is-open {
     justify-content: center;
     overflow: hidden;
     background-color: var(--color-secondary);
-    margin-top: var(--header-height-mobile);
 }
 
 @media (min-width: 768px) {
     .hero {
         min-height: 42vh;
-        margin-top: var(--header-height);
     }
 }
 
@@ -5486,7 +5487,7 @@ body:has(.site-banner) {
 
 .highlights {
     padding: var(--space-10) var(--space-5);
-    background-color: var(--color-bg);
+    background-color: var(--color-gray-50);
 }
 
 .highlights__container {
