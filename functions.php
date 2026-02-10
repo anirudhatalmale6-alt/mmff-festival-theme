@@ -5,9 +5,18 @@
 
 if (!defined('ABSPATH')) exit;
 
-define('MMFF_VERSION', '1.1.0');
+define('MMFF_VERSION', '1.2.' . time());
 define('MMFF_DIR', get_template_directory());
 define('MMFF_URI', get_template_directory_uri());
+
+// Prevent page caching for non-logged-in users
+add_action('send_headers', function() {
+    if (!is_admin()) {
+        header('Cache-Control: no-cache, must-revalidate, max-age=0');
+        header('Pragma: no-cache');
+        header('Expires: 0');
+    }
+});
 
 // Theme Setup
 function mmff_setup() {

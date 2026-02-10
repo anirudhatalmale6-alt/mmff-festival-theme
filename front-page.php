@@ -46,59 +46,7 @@ $hero_tagline  = get_theme_mod( 'mmff_hero_tagline', 'Where art sparks dialogue 
         </div>
     </section>
 
-    <!-- Festival Highlights -->
-    <section class="highlights" aria-labelledby="highlights-heading">
-        <div class="highlights__container">
-            <h2 id="highlights-heading" class="highlights__heading"><?php esc_html_e( 'Why MMFF?', 'mmff-festival' ); ?></h2>
-            <div class="highlights__grid">
-
-                <div class="highlights__card">
-                    <div class="highlights__icon" aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40">
-                            <path d="M15.5 5.5L18 8l-6 6-4-4 6-6z"></path>
-                            <path d="M15.5 5.5l2.5-2.5 4 4-2.5 2.5"></path>
-                            <path d="M6 14l-3.5 3.5a2.12 2.12 0 0 0 3 3L9 17"></path>
-                            <path d="M14.5 5.5l-8 8"></path>
-                        </svg>
-                    </div>
-                    <h3 class="highlights__card-title"><?php esc_html_e( 'Powerful Storytelling', 'mmff-festival' ); ?></h3>
-                    <p class="highlights__card-text">
-                        <?php esc_html_e( 'Curated films that illuminate the human experience of migration, displacement, and the search for belonging through compelling narratives.', 'mmff-festival' ); ?>
-                    </p>
-                </div>
-
-                <div class="highlights__card">
-                    <div class="highlights__icon" aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
-                    </div>
-                    <h3 class="highlights__card-title"><?php esc_html_e( 'Inclusive Community', 'mmff-festival' ); ?></h3>
-                    <p class="highlights__card-text">
-                        <?php esc_html_e( 'A welcoming space where filmmakers, audiences, and communities come together to share perspectives and foster understanding across cultures.', 'mmff-festival' ); ?>
-                    </p>
-                </div>
-
-                <div class="highlights__card">
-                    <div class="highlights__icon" aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                        </svg>
-                    </div>
-                    <h3 class="highlights__card-title"><?php esc_html_e( 'Art as Catalyst', 'mmff-festival' ); ?></h3>
-                    <p class="highlights__card-text">
-                        <?php esc_html_e( 'Cinema as a catalyst for social change -- sparking dialogue, challenging assumptions, and inspiring action for a more just and connected world.', 'mmff-festival' ); ?>
-                    </p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Films Gallery -->
+    <!-- Film Highlights Gallery -->
     <?php
     $featured_films = new WP_Query( array(
         'post_type'      => 'film',

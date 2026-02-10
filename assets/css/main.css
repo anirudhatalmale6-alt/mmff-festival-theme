@@ -3353,7 +3353,7 @@ body.admin-bar .site-header {
 /* Featured Films Strip */
 .featured-films {
     position: relative;
-    padding: var(--space-10) 0;
+    padding: var(--space-8) 0 var(--space-10);
     background-color: #fff;
 }
 
