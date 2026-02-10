@@ -5333,5 +5333,159 @@ body:has(.site-banner) {
 }
 
 /* ----------------------------------------------------------
+   23-P  Featured Films Gallery (smaller thumbnails)
+   ---------------------------------------------------------- */
+
+.featured-films__gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+    padding: 0;
+}
+
+@media (min-width: 768px) {
+    .featured-films__gallery {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-4);
+    }
+}
+
+@media (min-width: 1024px) {
+    .featured-films__gallery {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+.gallery-item {
+    position: relative;
+    display: block;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    aspect-ratio: 2/3;
+    background: var(--color-secondary);
+    text-decoration: none;
+    color: #fff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.gallery-item__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-item__image {
+    transform: scale(1.05);
+}
+
+.gallery-item__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-3);
+    background: linear-gradient(transparent, rgba(0,0,0,0.85));
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.gallery-item:hover .gallery-item__overlay {
+    opacity: 1;
+}
+
+.gallery-item__title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.2;
+    color: #fff;
+}
+
+.gallery-item__director {
+    font-size: 0.7rem;
+    margin: var(--space-1) 0 0;
+    opacity: 0.8;
+    color: #fff;
+}
+
+/* ----------------------------------------------------------
+   23-Q  Language Switcher
+   ---------------------------------------------------------- */
+
+.lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: var(--space-4);
+    flex-shrink: 0;
+}
+
+.lang-switcher__btn {
+    background: none;
+    border: none;
+    color: var(--color-text-light);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 4px 6px;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+.lang-switcher__btn:hover {
+    opacity: 1;
+}
+
+.lang-switcher__btn--active {
+    opacity: 1;
+    color: var(--color-accent);
+    background: rgba(212, 148, 58, 0.1);
+}
+
+.lang-switcher__divider {
+    color: var(--color-text-light);
+    opacity: 0.3;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 767px) {
+    .lang-switcher {
+        margin-left: auto;
+        margin-right: var(--space-2);
+    }
+}
+
+/* ----------------------------------------------------------
+   23-R  Hide Google Translate UI chrome
+   ---------------------------------------------------------- */
+
+.goog-te-banner-frame,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.goog-tooltip,
+.goog-tooltip:hover {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+}
+
+.goog-text-highlight {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* ----------------------------------------------------------
    END OF TEMPLATE CLASS-NAME BRIDGE
    ---------------------------------------------------------- */

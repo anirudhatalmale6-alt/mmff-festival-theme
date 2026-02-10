@@ -16,6 +16,7 @@ get_header();
 // Gather taxonomy terms for filter dropdowns.
 $years     = get_terms( array( 'taxonomy' => 'film_year', 'hide_empty' => true ) );
 $countries = get_terms( array( 'taxonomy' => 'film_country', 'hide_empty' => true ) );
+$languages = get_terms( array( 'taxonomy' => 'film_language', 'hide_empty' => true ) );
 
 // Initial film query (all films, ordered by screening date).
 $films_query = new WP_Query( array(
@@ -89,6 +90,18 @@ $films_query = new WP_Query( array(
                             <option value=""><?php esc_html_e( 'All Countries', 'mmff-festival' ); ?></option>
                             <?php foreach ( $countries as $country ) : ?>
                                 <option value="<?php echo esc_attr( $country->slug ); ?>"><?php echo esc_html( $country->name ); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ( ! empty( $languages ) && ! is_wp_error( $languages ) ) : ?>
+                    <div class="program-filters__group">
+                        <label for="film-language" class="screen-reader-text"><?php esc_html_e( 'Filter by language', 'mmff-festival' ); ?></label>
+                        <select id="film-language" class="program-filters__select" name="language">
+                            <option value=""><?php esc_html_e( 'All Languages', 'mmff-festival' ); ?></option>
+                            <?php foreach ( $languages as $language ) : ?>
+                                <option value="<?php echo esc_attr( $language->slug ); ?>"><?php echo esc_html( $language->name ); ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>

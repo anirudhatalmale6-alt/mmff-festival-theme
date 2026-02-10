@@ -68,6 +68,12 @@ if ( $custom_logo_id ) {
             ?>
         </nav>
 
+        <div class="lang-switcher" aria-label="<?php esc_attr_e( 'Language', 'mmff-festival' ); ?>">
+            <button class="lang-switcher__btn lang-switcher__btn--active" data-lang="sv" title="Svenska">SE</button>
+            <span class="lang-switcher__divider">|</span>
+            <button class="lang-switcher__btn" data-lang="en" title="English">EN</button>
+        </div>
+
         <button class="site-header__menu-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation menu', 'mmff-festival' ); ?>">
             <span class="site-header__menu-icon" aria-hidden="true">
                 <span></span>

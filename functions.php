@@ -290,6 +290,14 @@ function mmff_filter_films() {
         ];
     }
 
+    if (!empty($_POST['language'])) {
+        $tax_query[] = [
+            'taxonomy' => 'film_language',
+            'field' => 'slug',
+            'terms' => sanitize_text_field($_POST['language']),
+        ];
+    }
+
     if (count($tax_query) > 0) {
         $tax_query['relation'] = 'AND';
         $args['tax_query'] = $tax_query;

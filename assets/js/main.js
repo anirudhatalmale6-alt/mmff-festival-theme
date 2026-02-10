@@ -103,6 +103,7 @@
     const yearSelect = document.getElementById('film-year');
     const typeSelect = document.getElementById('film-type');
     const countrySelect = document.getElementById('film-country');
+    const languageSelect = document.getElementById('film-language');
     const resetButton = document.getElementById('film-filter-reset');
     const pillButtons = document.querySelectorAll('.filter-pill');
 
@@ -123,6 +124,9 @@
       }
       if (countrySelect) {
         values.country = countrySelect.value;
+      }
+      if (languageSelect) {
+        values.language = languageSelect.value;
       }
 
       // Film type can come from a <select>, a set of pill buttons, or both.
@@ -243,7 +247,7 @@
     }
 
     // Select dropdowns trigger immediately on change.
-    [yearSelect, typeSelect, countrySelect].forEach(function (el) {
+    [yearSelect, typeSelect, countrySelect, languageSelect].forEach(function (el) {
       if (el) {
         el.addEventListener('change', fetchFilms);
       }
@@ -256,6 +260,7 @@
         if (yearSelect) yearSelect.value = '';
         if (typeSelect) typeSelect.value = '';
         if (countrySelect) countrySelect.value = '';
+        if (languageSelect) languageSelect.value = '';
         pillButtons.forEach(function (p) { p.classList.remove('active'); });
         fetchFilms();
       });
@@ -406,6 +411,86 @@
   }
 
   /* ------------------------------------------------------------------ */
+  /*  7. Language switcher (SE/EN via Google Translate)                   */
+  /* ------------------------------------------------------------------ */
+
+  function initLangSwitcher() {
+    var buttons = document.querySelectorAll('.lang-switcher__btn');
+    if (!buttons.length) return;
+
+    // Load Google Translate script
+    var script = document.createElement('script');
+    script.src = 'https://translate.google.com/translate_a/element.js?cb=mmffTranslateInit';
+    document.head.appendChild(script);
+
+    // Initialize Google Translate (hidden widget)
+    window.mmffTranslateInit = function () {
+      new google.translate.TranslateElement({
+        pageLanguage: 'sv',
+        includedLanguages: 'sv,en',
+        autoDisplay: false,
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'mmff-translate-widget');
+    };
+
+    // Create hidden container for Google Translate widget
+    var widget = document.createElement('div');
+    widget.id = 'mmff-translate-widget';
+    widget.style.display = 'none';
+    document.body.appendChild(widget);
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var lang = btn.dataset.lang;
+
+        // Update active state
+        buttons.forEach(function (b) { b.classList.remove('lang-switcher__btn--active'); });
+        btn.classList.add('lang-switcher__btn--active');
+
+        // Trigger Google Translate
+        if (lang === 'en') {
+          // Set cookie for Google Translate
+          document.cookie = 'googtrans=/sv/en; path=/';
+          document.cookie = 'googtrans=/sv/en; path=/; domain=' + window.location.hostname;
+          // Try to trigger translation
+          var sel = document.querySelector('#mmff-translate-widget select');
+          if (sel) {
+            sel.value = 'en';
+            sel.dispatchEvent(new Event('change'));
+          } else {
+            // Reload to activate translation
+            window.location.reload();
+          }
+        } else {
+          // Restore to Swedish (original)
+          document.cookie = 'googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC';
+          document.cookie = 'googtrans=; path=/; domain=' + window.location.hostname + '; expires=Thu, 01 Jan 1970 00:00:00 UTC';
+          // Remove Google Translate frame if present
+          var frame = document.querySelector('.goog-te-banner-frame');
+          if (frame) frame.style.display = 'none';
+          document.body.style.top = '0';
+          // Try to restore original text
+          var sel = document.querySelector('#mmff-translate-widget select');
+          if (sel) {
+            sel.value = 'sv';
+            sel.dispatchEvent(new Event('change'));
+          } else {
+            window.location.reload();
+          }
+        }
+      });
+    });
+
+    // Set initial state based on current cookie
+    var match = document.cookie.match(/googtrans=\/sv\/(\w+)/);
+    if (match && match[1] === 'en') {
+      buttons.forEach(function (b) { b.classList.remove('lang-switcher__btn--active'); });
+      var enBtn = document.querySelector('.lang-switcher__btn[data-lang="en"]');
+      if (enBtn) enBtn.classList.add('lang-switcher__btn--active');
+    }
+  }
+
+  /* ------------------------------------------------------------------ */
   /*  Initialise everything on DOMContentLoaded                          */
   /* ------------------------------------------------------------------ */
 
@@ -415,5 +500,6 @@
     initFilmFilters();
     initSmoothScroll();
     initFadeIn();
+    initLangSwitcher();
   });
 })();

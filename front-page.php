@@ -98,13 +98,18 @@ $hero_tagline  = get_theme_mod( 'mmff_hero_tagline', 'Where art sparks dialogue 
         </div>
     </section>
 
-    <!-- Featured Films -->
+    <!-- Featured Films Gallery -->
     <?php
     $featured_films = new WP_Query( array(
         'post_type'      => 'film',
-        'posts_per_page' => 6,
-        'orderby'        => 'date',
-        'order'          => 'DESC',
+        'posts_per_page' => 12,
+        'orderby'        => 'rand',
+        'meta_query'     => array(
+            array(
+                'key'     => '_thumbnail_id',
+                'compare' => 'EXISTS',
+            ),
+        ),
     ) );
 
     if ( $featured_films->have_posts() ) :
@@ -112,16 +117,27 @@ $hero_tagline  = get_theme_mod( 'mmff_hero_tagline', 'Where art sparks dialogue 
     <section class="featured-films" aria-labelledby="featured-films-heading">
         <div class="featured-films__container">
             <div class="featured-films__header">
-                <h2 id="featured-films-heading" class="featured-films__heading"><?php esc_html_e( 'Featured Films', 'mmff-festival' ); ?></h2>
+                <h2 id="featured-films-heading" class="featured-films__heading"><?php esc_html_e( 'Film Highlights', 'mmff-festival' ); ?></h2>
                 <a href="<?php echo esc_url( home_url( '/program/' ) ); ?>" class="featured-films__view-all">
                     <?php esc_html_e( 'View full program', 'mmff-festival' ); ?>
                     <span aria-hidden="true">&rarr;</span>
                 </a>
             </div>
 
-            <div class="featured-films__grid">
+            <div class="featured-films__gallery">
                 <?php while ( $featured_films->have_posts() ) : $featured_films->the_post(); ?>
-                    <?php get_template_part( 'template-parts/film-card' ); ?>
+                    <a href="<?php the_permalink(); ?>" class="gallery-item" aria-label="<?php echo esc_attr( get_the_title() ); ?>">
+                        <?php if ( has_post_thumbnail() ) : ?>
+                            <?php the_post_thumbnail( 'film-card', array( 'class' => 'gallery-item__image', 'loading' => 'lazy' ) ); ?>
+                        <?php endif; ?>
+                        <div class="gallery-item__overlay">
+                            <h3 class="gallery-item__title"><?php the_title(); ?></h3>
+                            <?php $director = get_post_meta( get_the_ID(), '_film_director', true ); ?>
+                            <?php if ( $director ) : ?>
+                                <p class="gallery-item__director"><?php echo esc_html( $director ); ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </a>
                 <?php endwhile; ?>
             </div>
         </div>
