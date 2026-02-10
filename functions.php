@@ -163,6 +163,10 @@ function mmff_film_details_callback($post) {
             <th><label for="film_screening_time">Screening Time</label></th>
             <td><input type="text" id="film_screening_time" name="film_screening_time" value="<?php echo esc_attr($screening_time); ?>" placeholder="e.g. 14:00-15:15"></td>
         </tr>
+        <tr>
+            <th><label for="film_trailer_url">Trailer URL</label></th>
+            <td><input type="url" id="film_trailer_url" name="film_trailer_url" value="<?php echo esc_url(get_post_meta($post->ID, '_film_trailer_url', true)); ?>" class="regular-text" placeholder="https://www.youtube.com/watch?v=... or https://vimeo.com/..."></td>
+        </tr>
     </table>
     <?php
 }
@@ -177,6 +181,9 @@ function mmff_save_film_meta($post_id) {
         if (isset($_POST[$field])) {
             update_post_meta($post_id, '_' . $field, sanitize_text_field($_POST[$field]));
         }
+    }
+    if (isset($_POST['film_trailer_url'])) {
+        update_post_meta($post_id, '_film_trailer_url', esc_url_raw($_POST['film_trailer_url']));
     }
 }
 add_action('save_post_film', 'mmff_save_film_meta');

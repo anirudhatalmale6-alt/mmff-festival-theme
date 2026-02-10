@@ -5268,6 +5268,34 @@ a.page-contact__info-value:hover {
 }
 
 /* ----------------------------------------------------------
+   23-O  Film Trailer Embed
+   ---------------------------------------------------------- */
+
+.single-film__trailer {
+    padding: var(--space-12) 0;
+    background-color: var(--color-bg);
+}
+
+.single-film__trailer-embed {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    margin-top: var(--space-6);
+    box-shadow: var(--shadow-md);
+}
+
+.single-film__trailer-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* ----------------------------------------------------------
    23-N  Site Banner (full-width centered logo)
    ---------------------------------------------------------- */
 

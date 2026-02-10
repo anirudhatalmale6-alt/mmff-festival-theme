@@ -23,6 +23,7 @@ while ( have_posts() ) : the_post();
     $film_type      = get_post_meta( $film_id, '_film_type', true );
     $screening_date = get_post_meta( $film_id, '_film_screening_date', true );
     $screening_time = get_post_meta( $film_id, '_film_screening_time', true );
+    $trailer_url    = get_post_meta( $film_id, '_film_trailer_url', true );
     $countries      = wp_get_post_terms( $film_id, 'film_country', array( 'fields' => 'names' ) );
     $languages      = wp_get_post_terms( $film_id, 'film_language', array( 'fields' => 'names' ) );
     $categories     = wp_get_post_terms( $film_id, 'film_category', array( 'fields' => 'names' ) );
@@ -164,6 +165,18 @@ while ( have_posts() ) : the_post();
                     <h2 id="synopsis-heading" class="single-film__section-title"><?php esc_html_e( 'Synopsis', 'mmff-festival' ); ?></h2>
                     <div class="single-film__synopsis-body entry-content">
                         <?php the_content(); ?>
+                    </div>
+                </div>
+            </section>
+        <?php endif; ?>
+
+        <!-- Trailer -->
+        <?php if ( $trailer_url ) : ?>
+            <section class="single-film__trailer" aria-labelledby="trailer-heading">
+                <div class="single-film__synopsis-container">
+                    <h2 id="trailer-heading" class="single-film__section-title"><?php esc_html_e( 'Trailer', 'mmff-festival' ); ?></h2>
+                    <div class="single-film__trailer-embed">
+                        <?php echo wp_oembed_get( $trailer_url, array( 'width' => 800 ) ); ?>
                     </div>
                 </div>
             </section>
